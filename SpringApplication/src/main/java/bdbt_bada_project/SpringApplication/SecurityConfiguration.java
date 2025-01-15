@@ -1,9 +1,7 @@
 package bdbt_bada_project.SpringApplication;
 
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,18 +36,21 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/webjars/**").permitAll()
-                        .requestMatchers("/", "/index", "/main", "/reservation/**", "/static/**", "/images/**", "/icons/**", "/css/**", "/js/**", "/resources/static/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/", "/index", "/resources/static/**", "/webjars/**", "/css/**", "/js/**", "/images/**", "/icons/**").permitAll() // Publiczne zasoby
+                        .requestMatchers("/main").authenticated() // Autoryzacja wymagana
+                        .requestMatchers("/main_admin").hasRole("ADMIN") // Dostęp tylko dla administratorów
+                        .requestMatchers("/main_user").hasRole("USER") // Dostęp tylko dla użytkowników
+                        .anyRequest().authenticated() // Wszystkie inne ścieżki wymagają uwierzytelnienia
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
-                        .permitAll() // Zezwolenie na stronę logowania
+                        .loginPage("/login") // Niestandardowa strona logowania
+                        .defaultSuccessUrl("/main") // Domyślna strona po zalogowaniu
+                        .permitAll() // Dostęp dla wszystkich do strony logowania
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/index")
-                        .permitAll() // Zezwolenie na wylogowanie
+                        .logoutUrl("/logout") // Ścieżka do wylogowania
+                        .logoutSuccessUrl("/index") // Strona po wylogowaniu
+                        .permitAll() // Dostęp dla wszystkich do wylogowania
                 );
 
         return http.build();

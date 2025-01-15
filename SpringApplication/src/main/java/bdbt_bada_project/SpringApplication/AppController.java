@@ -1,7 +1,6 @@
 package bdbt_bada_project.SpringApplication;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
@@ -11,5 +10,9 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/main").setViewName("main");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/main_admin").setViewName("admin/main_admin");
+        registry.addViewController("/main_user").setViewName("user/main_user");
     }
 }
+
+
