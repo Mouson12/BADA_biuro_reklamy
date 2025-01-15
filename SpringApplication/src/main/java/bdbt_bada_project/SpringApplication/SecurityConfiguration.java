@@ -1,7 +1,9 @@
 package bdbt_bada_project.SpringApplication;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+//import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,16 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
     /**
-     * Defines a password encoder. In this case, no encoding is applied (for development only).
-     */
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
-
-    /**
-     * Configures in-memory user details for testing purposes.
-     * Users: "user" with role USER, "admin" with role ADMIN.
+     * Konfiguracja użytkowników w pamięci (in-memory).
      */
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
@@ -39,26 +32,34 @@ public class SecurityConfiguration {
     }
 
     /**
-     * Configures the security filter chain, defining authorization rules, login, and logout behavior.
+     * Konfiguracja SecurityFilterChain (zastępuje WebSecurityConfigurerAdapter).
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // Authorization rules
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/index").permitAll() // Allow access to root and index pages
-                        .anyRequest().authenticated() // Require authentication for all other requests
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/webjars/**").permitAll()
+                        .requestMatchers("/", "/index", "/main", "/reservation/**", "/static/**", "/images/**", "/icons/**", "/css/**", "/js/**", "/resources/static/**").permitAll()
+                        .anyRequest().authenticated()
                 )
-                // Login configuration
                 .formLogin(form -> form
-                        .loginPage("/login") // Custom login page URL
-                        .permitAll() // Allow everyone to access the login page
+                        .loginPage("/login")
+                        .permitAll() // Zezwolenie na stronę logowania
                 )
-                // Logout configuration
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/index") // Redirect to index page after logout
-                        .permitAll() // Allow everyone to log out
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/index")
+                        .permitAll() // Zezwolenie na wylogowanie
                 );
+
         return http.build();
+    }
+
+    /**
+     * Prosty enkoder hasła (niezalecany w produkcji).
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 }
