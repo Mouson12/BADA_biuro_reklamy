@@ -51,7 +51,6 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -62,27 +61,11 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.webjars</groupId>-->
-<!--			<artifactId>bootstrap</artifactId>-->
-<!--			<version>${bootstrap.version}</version>-->
-<!--		</dependency>-->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>5.3.2</version>
-		</dependency>
 		<!-- jQuery (required for Bootstrap) -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>3.7.1</version>
-		</dependency>
-		<!-- Popper.js (required for Bootstrap) -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>popper.js</artifactId>
-			<version>2.11.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -100,6 +83,12 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>23.3.0.23.09</version>
+		</dependency>
+
 
 	</dependencies>
 
