@@ -1,4 +1,4 @@
-package bdbt_bada_project.SpringApplication;
+package bdbt_bada_project.SpringApplication.controllers;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
