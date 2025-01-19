@@ -30,7 +30,9 @@
         <ul class="navbar-nav ms-auto">
           <!-- Show "Sign In" if not logged in -->
           <li th:if="${not #authorization.expression('isAuthenticated()')}" class="nav-item">
-            <a class="btn btn-primary ml-2" th:href="@{/login}" role="button">Sign In</a>
+            <a class="btn btn-custom ms-2" th:href="@{/login}" role="button">
+              Sign In
+            </a>
           </li>
 
           <!-- Show User's Name and Dropdown Menu if logged in -->
