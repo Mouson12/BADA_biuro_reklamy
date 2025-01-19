@@ -5,7 +5,6 @@
     <title>Main User Page</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 <body>
 
@@ -58,6 +57,23 @@
             </form>
         </div>
 
+    </div>
+
+    <!-- Add Buttons for Navigation -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h3>What would you like to do?</h3>
+            <div class="btn-group" role="group">
+                <!-- Button to update user -->
+                <a class="btn btn-outline-primary" th:href="@{/update-user}" role="button">Update Profile</a>
+
+                <!-- Button to view all campaigns -->
+                <a class="btn btn-outline-success" th:href="@{/all-campaigns}" role="button">View All Campaigns</a>
+
+                <!-- Button to create a new campaign -->
+                <a class="btn btn-outline-info" th:href="@{/create-campaign}" role="button">Create New Campaign</a>
+            </div>
+        </div>
     </div>
 </div>
 

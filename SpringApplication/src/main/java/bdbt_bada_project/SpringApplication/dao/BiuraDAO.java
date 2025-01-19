@@ -28,8 +28,8 @@ public class BiuraDAO {
 
     // Insert a new Biura
     public int saveBiura(Biura biura) {
-        String sql = "INSERT INTO Biura (Id_biura, Nazwa, Data_zalozenia, Id_adresu, Id_pracownika) VALUES (?, ?, ?, ?, ?)";
-        return jdbcTemplate.update(sql, biura.getIdBiura(), biura.getNazwa(), biura.getDataZalozenia(), biura.getIdAdresu(), biura.getIdPracownika());
+        String sql = "INSERT INTO Biura (Id_biura, Nazwa, Data_zalozenia, Id_adresu, Id_pracownika) VALUES (SEQ_BIURA.NEXTVAL, ?, ?, ?, ?)";
+        return jdbcTemplate.update(sql, biura.getNazwa(), biura.getDataZalozenia(), biura.getIdAdresu(), biura.getIdPracownika());
     }
 
     // Update Biura

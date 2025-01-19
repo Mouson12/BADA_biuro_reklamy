@@ -1,13 +1,14 @@
 package bdbt_bada_project.SpringApplication.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Kampanie {
     private Integer idKampanii;
     private String nazwa;
     private String opis;
-    private Date dataRozpoczecia;
-    private Date dataZakonczenia;
+    private LocalDate  dataRozpoczecia;
+    private LocalDate dataZakonczenia;
     private Double budzet;
     private Integer idKlienta;
     private Integer idBiura;
@@ -37,19 +38,19 @@ public class Kampanie {
         this.opis = opis;
     }
 
-    public Date getDataRozpoczecia() {
+    public LocalDate  getDataRozpoczecia() {
         return dataRozpoczecia;
     }
 
-    public void setDataRozpoczecia(Date dataRozpoczecia) {
+    public void setDataRozpoczecia(LocalDate  dataRozpoczecia) {
         this.dataRozpoczecia = dataRozpoczecia;
     }
 
-    public Date getDataZakonczenia() {
+    public LocalDate  getDataZakonczenia() {
         return dataZakonczenia;
     }
 
-    public void setDataZakonczenia(Date dataZakonczenia) {
+    public void setDataZakonczenia(LocalDate  dataZakonczenia) {
         this.dataZakonczenia = dataZakonczenia;
     }
 

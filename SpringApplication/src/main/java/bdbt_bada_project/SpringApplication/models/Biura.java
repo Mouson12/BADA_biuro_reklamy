@@ -1,11 +1,12 @@
 package bdbt_bada_project.SpringApplication.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Biura {
     private Integer idBiura;
     private String nazwa;
-    private Date dataZalozenia;
+    private LocalDate dataZalozenia;
     private Integer idAdresu;
     private Integer idPracownika;
 
@@ -26,11 +27,11 @@ public class Biura {
         this.nazwa = nazwa;
     }
 
-    public Date getDataZalozenia() {
+    public LocalDate getDataZalozenia() {
         return dataZalozenia;
     }
 
-    public void setDataZalozenia(Date dataZalozenia) {
+    public void setDataZalozenia(LocalDate dataZalozenia) {
         this.dataZalozenia = dataZalozenia;
     }
 

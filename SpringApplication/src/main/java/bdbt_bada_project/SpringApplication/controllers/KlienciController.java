@@ -25,6 +25,7 @@ public class KlienciController {
         return klienciDAO.getKlienciById(id);
     }
 
+
     @PostMapping
     public void addKlienci(@RequestBody Klienci klienci) {
         klienciDAO.saveKlienci(klienci);
