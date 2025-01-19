@@ -36,7 +36,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/index", "/resources/static/**", "/webjars/**", "/css/**", "/js/**", "/images/**", "/icons/**").permitAll() // Publiczne zasoby
+                        .requestMatchers("/", "/index", "/resources/static/**", "/webjars/**", "/css/**", "/js/**", "/images/**", "/icons/**", "/error").permitAll() // Publiczne zasoby
                         .requestMatchers("/main").authenticated() // Autoryzacja wymagana
                         .requestMatchers("/main_admin").hasRole("ADMIN") // Dostęp tylko dla administratorów
                         .requestMatchers("/main_user").hasRole("USER") // Dostęp tylko dla użytkowników
@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                 )
                 .formLogin(form -> form
                         .loginPage("/login") // Niestandardowa strona logowania
-                        .defaultSuccessUrl("/main") // Domyślna strona po zalogowaniu
+                        .defaultSuccessUrl("/index") // Domyślna strona po zalogowaniu
                         .permitAll() // Dostęp dla wszystkich do strony logowania
                 )
                 .logout(logout -> logout

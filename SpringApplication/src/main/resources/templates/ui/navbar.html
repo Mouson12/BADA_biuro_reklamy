@@ -4,25 +4,57 @@
 <th:block th:fragment="navbar">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+      <!-- Brand Logo -->
       <a class="navbar-brand" href="/">
         <img src="/icons/icon_white.png" alt="AdCraft Icon" style="height: 40px;"/>
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+
+      <!-- Navbar Toggler for Mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
               aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <!-- Left Links -->
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <a class="nav-link" th:href="@{/main}">Main</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/login}">Login</a>
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" th:href="@{/login}">Login</a>-->
+<!--          </li>-->
+        </ul>
+
+        <!-- Right Section: Sign In or User Dropdown -->
+        <ul class="navbar-nav ms-auto">
+          <!-- Show "Sign In" if not logged in -->
+          <li th:if="${not #authorization.expression('isAuthenticated()')}" class="nav-item">
+            <a class="btn btn-primary ml-2" th:href="@{/login}" role="button">Sign In</a>
+          </li>
+
+          <!-- Show User's Name and Dropdown Menu if logged in -->
+          <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+              <span th:text="${#authentication.name}"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" th:href="@{/profile}">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form th:action="@{/logout}" method="post" style="margin: 0;">
+                  <button type="submit" class="dropdown-item">Sign Out</button>
+                </form>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- CSS -->
   <style>
     .navbar {
       position: fixed;
@@ -30,12 +62,12 @@
       left: 0;
       width: 100%;
       z-index: 1030;
-      background-color: rgba(0, 0, 0, 0.85); /* Semi-transparent background */
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for separation */
+      background-color: rgba(0, 0, 0, 0.85);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     .navbar .navbar-brand img {
-      height: 40px; /* Adjust the height of the image */
+      height: 40px;
     }
 
     .navbar .nav-link {
@@ -45,6 +77,44 @@
 
     .navbar .nav-link:hover {
       color: #00aaff !important;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .dropdown-menu {
+      background-color: #f8f9fa;
+    }
+
+    .dropdown-menu .dropdown-item {
+      color: #000;
+    }
+
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #e9ecef;
+    }
+
+    .btn-custom {
+      background-color: #fff;
+      color: #000;
+      border: 2px solid #fff;
+      padding: 8px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #000;
+      color: #fff;
+      border: 2px solid #000;
+    }
+
+    form {
+      margin: 0;
     }
   </style>
 </th:block>
