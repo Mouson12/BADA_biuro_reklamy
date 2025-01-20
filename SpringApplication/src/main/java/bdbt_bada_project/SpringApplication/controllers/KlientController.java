@@ -38,7 +38,7 @@ public class KlientController {
 //    public String viewClientDetails(@PathVariable int id, Model model) {
 //        Klienci klient = klienciDAO.getKlienciById(id);
 //        model.addAttribute("klient", klient);
-//        return "client-details"; // Points to client-details.html in the templates folder
+//        return "client-details"; // Points to client_details.html in the templates folder
 //    }
     @GetMapping("/profile")
     public String viewClientDetails(Model model) {
@@ -49,13 +49,13 @@ public class KlientController {
         model.addAttribute("klient", klient);
         model.addAttribute("adres", adresy);
         model.addAttribute("biuro", biura);
-        return "user/client-details"; // Maps to client-details.html
+        return "user/client_details"; // Maps to client_details.html
     }
 
     @PostMapping("/update-user")
     public String updateUser(@ModelAttribute Klienci klienci, @ModelAttribute Adresy adresy) {
     klienciDAO.updateKlienci(klienci);
     adresyDAO.updateAdresy(adresy);
-    return "redirect:/main_user";
+    return "redirect:profile";
     }
 }

@@ -31,18 +31,8 @@
         </a>
         <a th:if="${#authorization.expression('isAuthenticated() and hasRole(''ROLE_ADMIN'')')}"
            class="btn btn-white btn-md rounded-pill px-4 me-2"
-           th:href="@{/admin/adresy}">
-          Manage Adresy
-        </a>
-        <a th:if="${#authorization.expression('isAuthenticated() and hasRole(''ROLE_ADMIN'')')}"
-           class="btn btn-white btn-md rounded-pill px-4 me-2"
            th:href="@{/admin/klienci}">
           Manage Klienci
-        </a>
-        <a th:if="${#authorization.expression('isAuthenticated() and hasRole(''ROLE_ADMIN'')')}"
-           class="btn btn-white btn-md rounded-pill px-4 me-2"
-           th:href="@{/admin/pracownicy}">
-          Manage Pracownicy
         </a>
         <a th:if="${#authorization.expression('isAuthenticated() and hasRole(''ROLE_ADMIN'')')}"
            class="btn btn-white btn-md rounded-pill px-4 me-2"
