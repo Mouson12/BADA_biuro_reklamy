@@ -46,8 +46,8 @@
     <h2 th:text="${action} + ' Biura '"></h2>
     <form th:action="@{/admin/biura/__${function}__}" method="post">
         <div class="form-group">
-            <label for="idBiura">ID Biuro</label>
-            <input type="number" class="form-control" id="idBiura" name="idBiura" th:value="${biuro.idBiura}" readonly>
+<!--            <label for="idBiura">ID Biuro</label>-->
+            <input type="number" class="form-control" id="idBiura" name="idBiura" th:value="${biuro.idBiura}" hidden>
         </div>
         <div class="form-group mt-3">
             <label for="nazwa">Name</label>
