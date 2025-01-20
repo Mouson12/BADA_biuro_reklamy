@@ -46,8 +46,8 @@
     <h2 th:text="${action} + ' Biura '"></h2>
     <form th:action="@{/admin/biura/__${function}__}" method="post">
         <div class="form-group">
-            <label for="idBiura">ID Biuro</label>
-            <input type="number" class="form-control" id="idBiura" name="idBiura" th:value="${biuro.idBiura}" readonly>
+<!--            <label for="idBiura">ID Biuro</label>-->
+            <input type="number" class="form-control" id="idBiura" name="idBiura" th:value="${biuro.idBiura}" hidden>
         </div>
         <div class="form-group mt-3">
             <label for="nazwa">Name</label>
@@ -58,12 +58,12 @@
             <input type="date" class="form-control" id="dataZalozenia" name="dataZalozenia" th:value="${biuro.dataZalozenia}" required>
         </div>
         <div class="form-group mt-3">
-            <label for="idAdresu">ID Adres</label>
-            <input type="number" class="form-control" id="idAdresu" name="idAdresu" th:value="${biuro.idAdresu}" readonly>
+<!--            <label for="idAdresu">ID Adres</label>-->
+            <input type="number" class="form-control" id="idAdresu" name="idAdresu" th:value="${biuro.idAdresu}" hidden>
         </div>
         <div class="form-group mt-3">
-            <label for="idPracownika">ID Pracownik</label>
-            <input type="number" class="form-control" id="idPracownika" name="idPracownika" th:value="${biuro.idPracownika}" readonly>
+<!--            <label for="idPracownika">ID Pracownik</label>-->
+            <input type="number" class="form-control" id="idPracownika" name="idPracownika" th:value="${biuro.idPracownika}" hidden>
         </div>
         <div class="form-group mt-3">
             <label for="miasto">City</label>

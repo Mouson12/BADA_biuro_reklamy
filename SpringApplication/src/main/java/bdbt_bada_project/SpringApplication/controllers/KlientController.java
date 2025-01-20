@@ -1,6 +1,8 @@
 package bdbt_bada_project.SpringApplication.controllers;
 
+import bdbt_bada_project.SpringApplication.dao.AdresyDAO;
 import bdbt_bada_project.SpringApplication.dao.KlienciDAO;
+import bdbt_bada_project.SpringApplication.dao.BiuraDAO;
 import bdbt_bada_project.SpringApplication.models.Adresy;
 import bdbt_bada_project.SpringApplication.models.Biura;
 import bdbt_bada_project.SpringApplication.models.Klienci;
@@ -16,12 +18,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class KlientController {
 
     @Autowired
-    KlienciDAO klienciDAO;
+    private KlienciDAO klienciDAO;
+
+    @Autowired
+    private AdresyDAO adresyDAO;
+
+    @Autowired
+    private BiuraDAO biuraDAO;
 
     @GetMapping("/update-user")
     public String showUpdateUserForm(Model model) {
-        // Add existing user's data into the model
-        model.addAttribute("klient", klienciDAO.getKlienciById(1));
+        Klienci klienci = klienciDAO.getKlienciById(1);
+        Adresy adresy = adresyDAO.getAdresyById(klienci.getIdAdresu());
+        model.addAttribute("klient", klienci);
+        model.addAttribute("adres", adresy);
         return "user/update_user";
     }
 //    @GetMapping("/klienci/{id}")
@@ -33,8 +43,8 @@ public class KlientController {
     @GetMapping("/profile")
     public String viewClientDetails(Model model) {
         Klienci klient = klienciDAO.getKlienciById(1); // Fetch client with ID 1
-        Adresy adresy = klienciDAO.getAdresById(klient.getIdAdresu());
-        Biura biura = klienciDAO.getBiuroById(klient.getIdBiura());
+        Adresy adresy = adresyDAO.getAdresyById(klient.getIdAdresu());
+        Biura biura = biuraDAO.getBiuraById(klient.getIdBiura());
 
         model.addAttribute("klient", klient);
         model.addAttribute("adres", adresy);
@@ -43,8 +53,9 @@ public class KlientController {
     }
 
     @PostMapping("/update-user")
-    public String updateUser(@ModelAttribute Klienci klienci) {
-    klienciDAO.saveKlienci(klienci);
-        return "redirect:/main_user";
+    public String updateUser(@ModelAttribute Klienci klienci, @ModelAttribute Adresy adresy) {
+    klienciDAO.updateKlienci(klienci);
+    adresyDAO.updateAdresy(adresy);
+    return "redirect:/main_user";
     }
 }
