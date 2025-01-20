@@ -39,7 +39,13 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/index", "/resources/static/**", "/webjars/**", "/css/**", "/js/**", "/images/**", "/icons/**", "/error").permitAll() // Publiczne zasoby
                         .requestMatchers("/main").authenticated() // Autoryzacja wymagana
                         .requestMatchers("/main_admin").hasRole("ADMIN") // Dostęp tylko dla administratorów
+                        .requestMatchers("/admin/*").hasRole("ADMIN")
+                        .requestMatchers("/admin/*/*").hasRole("ADMIN")
                         .requestMatchers("/main_user").hasRole("USER") // Dostęp tylko dla użytkowników
+                        .requestMatchers("/update-user").hasRole("USER")
+                        .requestMatchers("/profile").hasRole("USER")
+                        .requestMatchers("/all-campaigns").hasRole("USER")
+                        .requestMatchers("/create-campaign").hasRole("USER")
                         .anyRequest().authenticated() // Wszystkie inne ścieżki wymagają uwierzytelnienia
                 )
                 .formLogin(form -> form
