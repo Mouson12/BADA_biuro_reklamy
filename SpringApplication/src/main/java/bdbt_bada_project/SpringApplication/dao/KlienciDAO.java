@@ -34,8 +34,8 @@ public class KlienciDAO {
 
     // Update Klienci
     public int updateKlienci(Klienci klienci) {
-        String sql = "UPDATE Klienci SET Imie = ?, Nazwisko = ?, Id_adresu = ?, Email = ?, Telefon = ? WHERE Id_klienta = ?";
-        return jdbcTemplate.update(sql, klienci.getImie(), klienci.getNazwisko(), klienci.getIdAdresu(), klienci.getEmail(), klienci.getTelefon());
+        String sql = "UPDATE Klienci SET Imie = ?, Nazwisko = ?, Id_adresu = ?, Email = ?, Telefon = ?, Id_biura = ? WHERE Id_klienta = ?";
+        return jdbcTemplate.update(sql, klienci.getImie(), klienci.getNazwisko(), klienci.getIdAdresu(), klienci.getEmail(), klienci.getTelefon(), klienci.getIdBiura(), klienci.getIdKlienta());
     }
 
     // Delete Klienci

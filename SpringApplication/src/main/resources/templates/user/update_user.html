@@ -23,20 +23,52 @@
     <h2>Update Your Details</h2>
     <form th:action="@{/update-user}" method="post">
         <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" th:value="${klient.imie}" required>
+<!--            <label for="idBiura">ID Biuro</label>-->
+            <input type="number" class="form-control" id="idBiura" name="idBiura" th:value="${klient.idBiura}" hidden>
         </div>
         <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" th:value="${klient.nazwisko}" required>
+<!--            <label for="idKlienta">ID Adres</label>-->
+            <input type="number" class="form-control" id="idKlienta" name="idKlienta" th:value="${klient.idKlienta}" hidden>
+        </div>
+        <div class="form-group">
+            <label for="imie">First Name</label>
+            <input type="text" class="form-control" id="imie" name="imie" th:value="${klient.imie}" required>
+        </div>
+        <div class="form-group">
+            <label for="nazwisko">Last Name</label>
+            <input type="text" class="form-control" id="nazwisko" name="nazwisko" th:value="${klient.nazwisko}" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" th:value="${klient.email}" required>
+            <input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="30" th:value="${klient.email}" required>
         </div>
         <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" th:value="${klient.telefon}">
+            <label for="telefon">Phone</label>
+            <input type="tel" class="form-control" id="telefon" name="telefon" pattern="[0-9]{9}" th:value="${klient.telefon}">
+        </div>
+        <div class="form-group">
+<!--            <label for="idAdresu">ID Adres</label>-->
+            <input type="number" class="form-control" id="idAdresu" name="idAdresu" th:value="${klient.idAdresu}" hidden>
+        </div>
+        <div class="form-group">
+            <label for="miasto">City</label>
+            <input type="text" class="form-control" id="miasto" name="miasto" th:value="${adres.miasto}" required>
+        </div>
+        <div class="form-group">
+            <label for="ulica">Street</label>
+            <input type="text" class="form-control" id="ulica" name="ulica" th:value="${adres.ulica}" required>
+        </div>
+        <div class="form-group">
+            <label for="nrBudynku">Building number</label>
+            <input type="text" class="form-control" id="nrBudynku" name="nrBudynku" th:value="${adres.nrBudynku}" required>
+        </div>
+        <div class="form-group">
+            <label for="nrLokalu">Local number</label>
+            <input type="text" class="form-control" id="nrLokalu" name="nrLokalu" th:value="${adres.nrLokalu}" required>
+        </div>
+        <div class="form-group">
+            <label for="kodPocztowy">Postal code</label>
+            <input type="text" class="form-control" id="kodPocztowy" name="kodPocztowy" th:value="${adres.kodPocztowy}" required>
         </div>
         <button type="submit" class="btn btn-primary mt-3">Update</button>
     </form>
