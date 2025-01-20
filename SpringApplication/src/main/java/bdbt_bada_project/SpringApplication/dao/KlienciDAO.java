@@ -28,7 +28,7 @@ public class KlienciDAO {
 
     // Insert a new Klienci
     public int saveKlienci(Klienci klienci) {
-        String sql = "INSERT INTO Klienci (Id_klienta, Imie, Nazwisko, Email, Telefon, Id_biura, Id_adresu) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Klienci (Id_klienta, Imie, Nazwisko, Email, Telefon, Id_biura, Id_adresu) VALUES (SEQ_KLIENCI.NEXTVAL, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql, klienci.getImie(), klienci.getNazwisko(), klienci.getEmail(), klienci.getTelefon(), klienci.getIdBiura(), klienci.getIdAdresu());
     }
 
