@@ -1,5 +1,7 @@
 package bdbt_bada_project.SpringApplication.dao;
 
+import bdbt_bada_project.SpringApplication.models.Adresy;
+import bdbt_bada_project.SpringApplication.models.Biura;
 import bdbt_bada_project.SpringApplication.models.Klienci;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -24,6 +26,16 @@ public class KlienciDAO {
     public Klienci getKlienciById(Integer id) {
         String sql = "SELECT * FROM Klienci WHERE Id_klienta = ?";
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Klienci.class), id);
+    }
+
+    public Adresy getAdresById(int id) {
+        String sql = "SELECT * FROM SYSTEM.ADRESY WHERE ID_ADRESU = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Adresy.class));
+    }
+
+    public Biura getBiuroById(int id) {
+        String sql = "SELECT * FROM SYSTEM.BIURA WHERE ID_BIURA = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Biura.class));
     }
 
     // Insert a new Klienci
